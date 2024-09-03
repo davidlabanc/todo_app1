@@ -1,6 +1,6 @@
 import React from 'react'
 import { Todo } from '../../_interfaces/global'
-import CheckButton from '../components/CheckButton'
+import CheckButton from '../form/CheckButton'
 import Input from '../form/Input'
 import { editTodo } from '../../_api/todoAPI'
 

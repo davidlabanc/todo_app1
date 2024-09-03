@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Checkbox from '../form/Checkbox'
-import DeleteButton from '../components/DeleteButton'
+import DeleteButton from '../form/DeleteButton'
 import { Todo } from '../../_interfaces/global'
 import { changeStatusTodo, deleteTodo } from '../../_api/todoAPI'
 import Overlay from '../hoc/Overlay'
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../form/SubmitButton'
 // @ts-ignore
-import { useFormState, useFormStatus } from "react-dom";
-import CheckButton from '../components/CheckButton'
+import { useFormState } from "react-dom";
+import CheckButton from '../form/CheckButton'
 import Input from '../form/Input'
 import { editTodo } from '../../_api/todoAPI'
 
@@ -28,7 +28,6 @@ const TodoItem: React.FC<ITodoItemProps> = ({ id, text, completed, index, mode, 
 
   useEffect(() => {
     if (state.success) {
-      // apply logic here
       toggleOverlay()
     }
   }, [state]);
@@ -76,7 +75,6 @@ const TodoItem: React.FC<ITodoItemProps> = ({ id, text, completed, index, mode, 
         {overlayComponent}
       </div>
     );
-
   } else {
     return (
       <div key={id}>
@@ -99,17 +97,6 @@ const TodoItem: React.FC<ITodoItemProps> = ({ id, text, completed, index, mode, 
       </div>
     );
   }
-
-
-
-
-
-
-  // if (mode) {
-  //   return <TodoItemEdit index={index} id={id} text={text} completed={completed} />
-  // } else {
-  //   return <TodoItemDefault index={index} id={id} text={text} completed={completed} listId={listId} />
-  // }
 };
 
 export default TodoItem

@@ -1,13 +1,13 @@
 "use client"
 import React, { useState } from 'react'
 import { Lists } from '../../_interfaces/global'
-import TodoItem from '../components/TodoItem'
+import TodoItem from './TodoItem'
 import CustomSwitch from '../form/CustomSwitch'
 import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import NewTodoForm from '../components/NewTodoForm'
+import NewTodoForm from './NewTodoForm'
 
 export default function List({ lists }: Lists) {
   const [mode, setMode] = useState<boolean>(false) // false = edit mode, true = delete mode

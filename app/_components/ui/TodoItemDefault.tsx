@@ -1,10 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Checkbox from '../form/Checkbox'
-import DeleteButton from '../components/DeleteButton'
+import DeleteButton from '../form/DeleteButton'
 import { Todo } from '../../_interfaces/global'
 import { changeStatusTodo, deleteTodo } from '../../_api/todoAPI'
 import Overlay from '../hoc/Overlay'
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../form/SubmitButton'
 // @ts-ignore
 import { useFormState, useFormStatus } from "react-dom";
 
@@ -20,7 +20,6 @@ export default function TodoItemDefault({ id, index, text, completed, listId }: 
 
   useEffect(() => {
     if (state.success) {
-      // apply logic here
       toggleOverlay()
     }
   }, [state]);

@@ -1,7 +1,7 @@
-import List from './_components/components/List'
+import List from './_components/ui/List'
 import { List as IList, Lists } from './_interfaces/global'
-import NewListForm from './_components/components/NewListForm'
-import Theme from './_components/components/Theme'
+import NewListForm from './_components/ui/NewListForm'
+import Theme from './_components/ui/Theme'
 
 async function getData() {
   const res = await fetch(`${process.env.BASE_URL}/lists`, { cache: 'no-store' })

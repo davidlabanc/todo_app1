@@ -2,9 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { createNewList } from '../../_api/todoAPI'
 import Overlay from '../hoc/Overlay'
-import SubmitButton from '../components/SubmitButton'
+import SubmitButton from '../form/SubmitButton'
 import Input from '../form/Input'
-import CreateButton from '../components/CreateButton'
+import CreateButton from '../form/CreateButton'
 // @ts-ignore
 import { useFormState } from "react-dom";
 

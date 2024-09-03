@@ -2,6 +2,9 @@ import React from 'react';
 // @ts-ignore
 import { useFormStatus } from 'react-dom'
 
+import LoadingIcon from '../icons/LoadingIcon'
+import { LoadingIconAttr } from '../../_constants/css_constants'
+
 interface SubmitButtonProps {
   onClick?: () => void;
   label: string;
@@ -10,7 +13,7 @@ interface SubmitButtonProps {
 
 const SubmitButton: React.FC<SubmitButtonProps> = ({ onClick = () => { }, label, type }) => {
   const { pending } = useFormStatus()
-  
+
   return (
     <button
       onClick={onClick}
@@ -19,26 +22,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ onClick = () => { }, label,
     >
       {pending ? (
         <div className='flex items-center'>
-          <svg
-            className="animate-spin h-5 w-5 text-white"
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <circle
-              className="opacity-25"
-              cx="12"
-              cy="12"
-              r="10"
-              stroke="currentColor"
-              strokeWidth="4"
-            ></circle>
-            <path
-              className="opacity-75"
-              fill="currentColor"
-              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zM2 16.15c-.41-.391-.78-.819-1.1-1.28A9.956 9.956 0 010 12H0v.1h.1c.121.721.31 1.421.56 2.1A10.05 10.05 0 002 16.15z"
-            ></path>
-          </svg>
+          <LoadingIcon {...LoadingIconAttr} />
           <p className='text-white font-semibold pl-2'>Loading</p>
         </div>
       ) : label}

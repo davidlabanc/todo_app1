@@ -39,8 +39,7 @@ export async function changeStatusTodo(formData: FormData) {
   revalidatePath('/')
 }
 
-export async function deleteTodo(previousState: {success: boolean}, formData: FormData) {
-  console.log(previousState.success,formData)
+export async function deleteTodo(formData: FormData) {
 
   const res = await fetch(`${process.env.BASE_URL}/lists/${formData.get('listId')}/todos/${formData.get('id')}`, {
     method: 'DELETE',
@@ -52,10 +51,10 @@ export async function deleteTodo(previousState: {success: boolean}, formData: Fo
 
   revalidatePath('/')
 
-  return {success: true}
+  return { success: true }
 }
 
-export async function createNewList(previousState: {success: boolean}, formData: FormData) {
+export async function createNewList(formData: FormData) {
   const rawFormData = {
     name: formData.get('text'),
   }
@@ -72,12 +71,10 @@ export async function createNewList(previousState: {success: boolean}, formData:
 
   revalidatePath('/')
 
-  return {success: true}
+  return { success: true }
 }
 
-export async function createNewTodo(previousState: {success: boolean}, formData: FormData) {
-
-  console.log(formData)
+export async function createNewTodo(formData: FormData) {
   const rawFormData = {
     text: formData.get('text'),
   }
@@ -94,5 +91,5 @@ export async function createNewTodo(previousState: {success: boolean}, formData:
 
   revalidatePath('/')
 
-  return {success: true}
+  return { success: true }
 }
