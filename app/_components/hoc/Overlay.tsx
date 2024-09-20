@@ -14,11 +14,12 @@ const Overlay: React.FC<OverlayProps> = (props) => {
         <div 
           className="fixed top-0 bottom-0 right-0 left-0 bg-black bg-opacity-50 z-40" 
           onClick={() => props.showOverlay()}
+          data-test="overlay"
         ></div>
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-4/5 z-50 lg:w-2/5">
           <div className="bg-white dark:bg-gray-700 rounded-2xl w-full p-10">
             <div className="flex justify-between items-center pb-5">
-              <div className="text-black font-semibold text-lg dark:text-neutral-200">{props.header}</div>
+              <div className="text-black font-semibold text-lg dark:text-neutral-200" data-test='overlay-header'>{props.header}</div>
               <svg
                 onClick={() => props.showOverlay()}
                 xmlns="http://www.w3.org/2000/svg"
@@ -26,6 +27,7 @@ const Overlay: React.FC<OverlayProps> = (props) => {
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
+                data-test='close-icon'
               >
                 <path
                   strokeLinecap="round"

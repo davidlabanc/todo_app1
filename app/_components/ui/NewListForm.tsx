@@ -11,8 +11,10 @@ import { useFormState } from "react-dom";
 type Props = {}
 
 export default function NewListForm({ }: Props) {
-  const [overlay, setoverlay] = useState(false)
+  const [overlay, setOverlay] = useState(false)
   const [state, formAction] = useFormState(createNewList, { success: false })
+
+  console.log(state)
 
   useEffect(() => {
     if (state.success) {
@@ -21,7 +23,7 @@ export default function NewListForm({ }: Props) {
   }, [state]);
 
   const toggleOverlay = () => {
-    setoverlay(!overlay)
+    setOverlay(!overlay)
   }
 
   return (
@@ -34,10 +36,15 @@ export default function NewListForm({ }: Props) {
         overlay={overlay}
         showOverlay={toggleOverlay}
       >
-        <form action={formAction}>
+        <form action={formAction} id="new-list-form">
           <Input name="text" type="text" value="" placeholder='Enter a new list...' />
           <div className="flex justify-end w-full pt-5">
-            <button type="reset" className='text-blue-600 font-semibold hover:underline pr-5' onClick={() => toggleOverlay()}>Cancel</button>
+            <button
+              type="reset"
+              className='text-blue-600 font-semibold hover:underline pr-5'
+              onClick={() => toggleOverlay()}
+              data-test='cancel-button'
+            >Cancel</button>
             <SubmitButton type='submit' label='Submit' />
           </div>
         </form>

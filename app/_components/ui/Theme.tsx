@@ -33,9 +33,11 @@ const DarkModeToggle = () => {
 
   return (
     <div className='flex justify-end w-auto '>
-      <button onClick={toggleTheme} className="py-2 px-4 text-white">
+      <button onClick={toggleTheme} className="py-2 px-4 text-white" data-test='theme-button'>
         {
-          theme === 'light' ? <LightModeIcon fontSize='large' className='text-gray-800'/> : <DarkModeIcon fontSize='large' className='text-neutral-200'/>
+          theme === 'light' ? 
+          <LightModeIcon fontSize='large' className='text-gray-800' data-test='light-mode-icon'/> : 
+          <DarkModeIcon fontSize='large' className='text-neutral-200' data-test='dark-mode-icon'/>
         }
       </button>
     </div>
