@@ -27,9 +27,9 @@ export default async function Home() {
   const data = await getData()
 
   return (
-    <div className='dark:bg-zinc-900 min-h-screen'>
+    <div className='dark:bg-dark-bg min-h-screen'>
       <Theme />
-      <main className="dark:text-neutral-200 pt-24 w-full flex flex-col items-center">
+      <main className="dark:text-dark-header pt-24 w-full flex flex-col items-center">
         <div className='w-1/3 justify-center rounded-lg min-w-80'>
           <NewListForm />
         </div>

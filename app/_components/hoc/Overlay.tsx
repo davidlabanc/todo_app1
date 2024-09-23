@@ -17,9 +17,9 @@ const Overlay: React.FC<OverlayProps> = (props) => {
           data-test="overlay"
         ></div>
         <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex justify-center items-center w-4/5 z-50 lg:w-2/5">
-          <div className="bg-white dark:bg-gray-700 rounded-2xl w-full p-10">
+          <div className="bg-light-bg border-light-bg dark:bg-dark-bg dark:border-dark-border border rounded-2xl w-full p-10">
             <div className="flex justify-between items-center pb-5">
-              <div className="text-black font-semibold text-lg dark:text-neutral-200" data-test='overlay-header'>{props.header}</div>
+              <div className="text-black font-semibold text-lg dark:text-dark-header" data-test='overlay-header'>{props.header}</div>
               <svg
                 onClick={() => props.showOverlay()}
                 xmlns="http://www.w3.org/2000/svg"

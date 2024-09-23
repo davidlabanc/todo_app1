@@ -15,7 +15,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, checked, name, onChange }) =
       <input
         type="checkbox"
         name={name}
-        className="form-checkbox h-5 w-5 text-blue-600 dark:border-neutral-200 dark:bg-gray-700 dark:text-neutral-200"
+        className="form-checkbox h-5 w-5 text-blue-600 dark:border-neutral-200 dark:bg-gray-700 dark:text-dark-header"
         checked={isChecked}
         onChange={()=>{
           setisChecked(!isChecked)

@@ -37,7 +37,7 @@ const DarkModeToggle = () => {
         {
           theme === 'light' ? 
           <LightModeIcon fontSize='large' className='text-gray-800' data-test='light-mode-icon'/> : 
-          <DarkModeIcon fontSize='large' className='text-neutral-200' data-test='dark-mode-icon'/>
+          <DarkModeIcon fontSize='large' className='text-dark-header' data-test='dark-mode-icon'/>
         }
       </button>
     </div>

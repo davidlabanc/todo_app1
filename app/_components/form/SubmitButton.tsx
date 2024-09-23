@@ -18,7 +18,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ onClick = () => { }, label,
     <button
       onClick={onClick}
       type={type}
-      className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+      className="px-4 py-2 bg-buttons-submit hover:bg-blue-600 text-buttons-font font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
       data-test='submit-button'
     >
       {pending ? (

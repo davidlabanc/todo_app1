@@ -17,7 +17,7 @@ const Input: React.FC<InputProps> = ({ type = "text", value = "", name, placehol
         name={name}
         onChange={(event) => setnewvalue(event.target.value)}
         placeholder={placeholder}
-        className="w-full dark:bg-gray-800 dark:border-neutral-200 px-2 py-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full dark:bg-dark-bg dark:border-dark-border focus:dark:border-dark-font dark:text-dark-font px-2 py-1 border border-light-border rounded-md focus:outline-none focus:ring-0"
       />
     </div>
   );

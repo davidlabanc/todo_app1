@@ -41,7 +41,7 @@ export default function NewListForm({ }: Props) {
           <div className="flex justify-end w-full pt-5">
             <button
               type="reset"
-              className='text-blue-600 font-semibold hover:underline pr-5'
+              className='dark:text-buttons-cancel text-buttons-submit font-semibold hover:underline pr-5'
               onClick={() => toggleOverlay()}
               data-test='cancel-button'
             >Cancel</button>
