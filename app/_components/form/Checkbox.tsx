@@ -11,7 +11,7 @@ const Checkbox: React.FC<CheckboxProps> = ({ label, checked, name, onChange }) =
   const [isChecked, setisChecked] = useState(checked)
 
   return (
-    <label className="flex items-center space-x-3">
+    <label className="flex items-center">
       <input
         type="checkbox"
         name={name}

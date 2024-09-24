@@ -2,8 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 
-//not using useFormState hook so doenst need prevState
-export async function editTodo(formData: FormData) {
+//added prevState because of useFormState hook that controls loading and state
+export async function editTodo(prevState: any, formData: FormData) {
   const rawFormData = {
     text: formData.get("text"),
   };
@@ -29,6 +29,7 @@ export async function editTodo(formData: FormData) {
   }
 }
 
+//not using useFormState hook so doenst need prevState
 export async function changeStatusTodo(formData: FormData) {
   const rawFormData = {
     completed: formData.get("checkbox") === "on" ? true : false,
@@ -55,7 +56,6 @@ export async function changeStatusTodo(formData: FormData) {
   }
 }
 
-//added prevState because of useFormState hook that controls loading
 export async function deleteTodo(prevState: any, formData: FormData) {
   const todoId = formData.get("id");
   const listId = formData.get("listId");
@@ -107,6 +107,7 @@ export async function createNewList(prevState: any, formData: FormData) {
 export async function createNewTodo(prevState: any, formData: FormData) {
   const rawFormData = {
     text: formData.get("text"),
+    completed: false
   };
 
   const listId = formData.get("listId");

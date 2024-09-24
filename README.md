@@ -1,4 +1,11 @@
-Setup test enviroment and write first tests
+TODO
+- on click edit, hover effect for todo edit
+- cross todo task when its completed
+- dark mode - cancel button color
+- loading status for complete action 
+- find a better way to delete 
+- submit and cancel button hover effect
+
 
 
 

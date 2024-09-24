@@ -1,18 +1,18 @@
 import React, { useState, useRef, useEffect } from "react";
-import Checkbox from "../form/Checkbox";
-import DeleteButton from "../form/DeleteButton";
-import { Todo } from "../../_interfaces/global";
-import { changeStatusTodo, deleteTodo } from "../../_api/todoAPI";
-import Overlay from "../hoc/Overlay";
-import SubmitButton from "../form/SubmitButton";
 // @ts-ignore
 import { useFormState } from "react-dom";
+
+import { Todo } from "../../_interfaces/global";
+import { changeStatusTodo, deleteTodo, editTodo } from "../../_api/todoAPI";
+import SubmitButton from "../form/SubmitButton";
 import CheckButton from "../form/CheckButton";
+import DeleteButton from "../form/DeleteButton";
+import Overlay from "../hoc/Overlay";
 import Input from "../form/Input";
-import { editTodo } from "../../_api/todoAPI";
+import Checkbox from "../form/Checkbox";
+import ClearIcon from "@mui/icons-material/Clear";
 
 export interface ITodoItemProps extends Todo {
-  mode: boolean;
   index: string;
   listId: string;
 }
@@ -22,18 +22,25 @@ const TodoItem: React.FC<ITodoItemProps> = ({
   text,
   completed,
   index,
-  mode,
   listId,
 }) => {
   const [overlay, setoverlay] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const [state, formAction] = useFormState(deleteTodo, { success: false });
+  const [stateEdit, formActionEdit] = useFormState(editTodo, { success: false });
+  const [mode, setMode] = useState(true); // false = edit mode, true = delete mode, complete todo mode
 
   useEffect(() => {
     if (state.success) {
       toggleOverlay();
     }
   }, [state]);
+
+  useEffect(() => {
+    if (stateEdit.success) {
+      setMode(true);
+    }
+  }, [stateEdit]);
 
   const toggleOverlay = () => {
     setoverlay(!overlay);
@@ -67,59 +74,80 @@ const TodoItem: React.FC<ITodoItemProps> = ({
       </form>
     </Overlay>
   );
-
-  if (mode) {
-    return (
-      <div key={id} className="flex items-center mb-2">
-        <div className="flex items-center">
-          <div className="pr-3 text-lg">{index}.</div>
-        </div>
-        <div className="flex items-cener"></div>
-        <form
-          action={editTodo}
-          className="flex justify-between items-center mb-2 flex-grow"
-        >
-          <input type="hidden" name="id" value={id} />
-          <Input name="text" type="text" value={text} />
-          <CheckButton type="submit" css="ml-1" />
-        </form>
-        <DeleteButton
-          onClick={toggleOverlay}
-          css="mx-0 mb-2 ml-2 block sm:hidden"
-        />
-        {overlayComponent}
-      </div>
-    );
-  } else {
-    return (
-      <div key={id}>
-        <div className="flex justify-between items-center group mb-2">
-          <div className="flex items-center">
-            <div className="pr-3">{index}.</div>
-            <div>{text}</div>
-          </div>
-          <div className="flex">
-            <div className="opacity-0 transition-all duration-300 group-hover:opacity-100">
-              <DeleteButton onClick={toggleOverlay} />
+  return (
+    <div key={id}>
+      <div className="flex justify-between items-center mb-2">
+        {mode ? (
+          <>
+            <div className="flex items-center mb-2 group w-full">
+              <div
+                className={`${
+                  completed ? "pr-3" : "pr-[11px]"
+                } group-hover:pr-3`}
+              >
+                {index}.
+              </div>
+              {completed ? (
+                <div className="py-[5px] px-[10px] text-left w-full line-through">
+                  {text}
+                </div>
+              ) : (
+                <button
+                  className="py-[5px] px-[10px] text-left group-hover:dark:bg-dark-bg group-hover:dark:border-dark-border 
+                  group-hover:px-2 group-hover:py-1 group-hover:border group-hover:border-light-border group-hover:rounded-md w-full"
+                  onClick={() => {
+                    setMode(!mode);
+                  }}
+                >
+                  {text}
+                </button>
+              )}
             </div>
+            <div className="flex flex-grow justify-end group">
+              <div className="opacity-0 transition-all duration-300 group-hover:opacity-100">
+                <DeleteButton onClick={toggleOverlay} />
+              </div>
+              <form
+                action={changeStatusTodo}
+                ref={formRef}
+                className="flex items-center"
+              >
+                <input type="hidden" name="id" value={id} />
+                <Checkbox
+                  checked={completed}
+                  onChange={handleChange}
+                  name="checkbox"
+                />
+              </form>
+            </div>
+          </>
+        ) : (
+          <div key={id} className="flex items-center mb-2 w-full">
+            <div className="flex items-center">
+              <div className="pr-3">{index}.</div>
+            </div>
+            <div className="flex items-cener"></div>
             <form
-              action={changeStatusTodo}
-              ref={formRef}
-              className="flex items-center"
+              action={formActionEdit}
+              className="flex flex-grow items-center"
             >
               <input type="hidden" name="id" value={id} />
-              <Checkbox
-                checked={completed}
-                onChange={handleChange}
-                name="checkbox"
-              />
+              <Input name="text" type="text" value={text} autofocus={!mode} />
+              <CheckButton type="submit" />
             </form>
+            <button
+              onClick={() => {
+                setMode(!mode);
+              }}
+            >
+              <ClearIcon />
+            </button>
           </div>
-        </div>
-        {overlayComponent}
+        )}
       </div>
-    );
-  }
+      {overlayComponent}
+    </div>
+  );
 };
 
 export default TodoItem;

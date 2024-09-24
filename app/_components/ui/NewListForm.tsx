@@ -2,8 +2,9 @@
 import React, { useState, useEffect } from 'react';
 import { createNewList } from '../../_api/todoAPI'
 import Overlay from '../hoc/Overlay'
-import SubmitButton from '../form/SubmitButton'
 import Input from '../form/Input'
+import SubmitButton from '../form/SubmitButton'
+import CancelButton from '../form/CancelButton'
 import CreateButton from '../form/CreateButton'
 // @ts-ignore
 import { useFormState } from "react-dom";
@@ -39,12 +40,7 @@ export default function NewListForm({ }: Props) {
         <form action={formAction} id="new-list-form">
           <Input name="text" type="text" value="" placeholder='Enter a new list...' />
           <div className="flex justify-end w-full pt-5">
-            <button
-              type="reset"
-              className='dark:text-buttons-cancel text-buttons-submit font-semibold hover:underline pr-5'
-              onClick={() => toggleOverlay()}
-              data-test='cancel-button'
-            >Cancel</button>
+            <CancelButton text='Cancel' onClick={toggleOverlay}/>
             <SubmitButton type='submit' label='Submit' />
           </div>
         </form>
