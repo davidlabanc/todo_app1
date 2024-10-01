@@ -29,8 +29,7 @@ export async function editTodo(prevState: any, formData: FormData) {
   }
 }
 
-//not using useFormState hook so doenst need prevState
-export async function changeStatusTodo(formData: FormData) {
+export async function changeStatusTodo(prevState: any, formData: FormData) {
   const rawFormData = {
     completed: formData.get("checkbox") === "on" ? true : false,
   };
@@ -59,6 +58,8 @@ export async function changeStatusTodo(formData: FormData) {
 export async function deleteTodo(prevState: any, formData: FormData) {
   const todoId = formData.get("id");
   const listId = formData.get("listId");
+
+  console.log(todoId, listId)
 
   try {
     const res = await fetch(
