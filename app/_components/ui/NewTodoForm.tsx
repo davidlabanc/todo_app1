@@ -10,21 +10,23 @@ import { useFormState } from "react-dom";
 
 type Props = {
   listId: string;
+  addNewTodo: (listId: string, newTodo: string) => void
 };
 
-export default function NewTodoForm({ listId }: Props) {
+export default function NewTodoForm({ listId, addNewTodo }: Props) {
   const [overlay, setoverlay] = useState(false);
   const [state, formAction] = useFormState(createNewTodo, { success: false });
-
-  useEffect(() => {
-    if (state.success) {
-      toggleOverlay();
-    }
-  }, [state]);
 
   const toggleOverlay = () => {
     setoverlay(!overlay);
   };
+
+  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    const formData = new FormData(event.currentTarget)
+
+    toggleOverlay()
+    addNewTodo(listId, formData.get("text")?.toString()??'')
+  }
 
   return (
     <div>
@@ -40,7 +42,7 @@ export default function NewTodoForm({ listId }: Props) {
         overlay={overlay}
         showOverlay={toggleOverlay}
       >
-        <form action={formAction}>
+        <form onSubmit={handleSubmit} action={formAction}>
           <input type="hidden" name="listId" value={listId} />
           <Input
             name="text"

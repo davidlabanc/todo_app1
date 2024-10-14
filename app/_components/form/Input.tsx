@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { useState } from 'react';
 
 interface InputProps {
   type: string;
@@ -19,7 +19,7 @@ const Input: React.FC<InputProps> = ({ type = "text", value = "", name, placehol
         onChange={(event) => setnewvalue(event.target.value)}
         placeholder={placeholder}
         autoFocus={autofocus}
-        className="w-full dark:bg-dark-bg dark:border-dark-border focus:dark:border-dark-font dark:text-dark-font px-2 py-1 border border-light-border rounded-md focus:outline-none focus:ring-0"
+        className="w-full dark:bg-dark-bg dark:border-dark-border focus:dark:border-dark-font focus:border-light-focusInput dark:text-dark-font px-2 py-1 border border-light-border rounded-md focus:outline-none focus:ring-0"
       />
     </div>
   );

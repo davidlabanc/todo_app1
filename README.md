@@ -1,14 +1,38 @@
 TODO
-- on click edit, hover effect for todo edit
-- cross todo task when its completed
-- dark mode - cancel button color
-- loading status for complete action 
-- find a better way to delete 
+- find a better way to delete ?
 - submit and cancel button hover effect
+- change new todo loading state ( add new todo to the list even if we dont have api success response)
+- refactor TodoItem?
 
 
 
+change new todo loading state ( add new todo to the list even if we dont have api success response)
 
+- pridat novy atribut do todo ktory odlisi / nepridat do listu 
+- po submite skryt overlay, pridat nove ine todo
+- loading effect na nove todo
+
+problems:
+- light mode / dark mode color css problem 
+- animation does not support css border radius
+
+
+export type Todo = {
+    id: string;
+    text: string;
+    completed: boolean;
+}
+
+export type List = {
+  createdAt: string;
+  id: string;
+  name: string;
+  todo: Todo[] | string;
+}
+
+export type Lists = {
+  lists: List[]
+}
 
 
 

@@ -1,3 +1,4 @@
+import { lightBlue } from "@mui/material/colors";
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -28,6 +29,9 @@ const config: Config = {
           border: "#e5e5e5",
           font: "#18181b",
           header: "#18181b",
+          lightBlue: '#dbeafe',
+          focusInput: "#3b82f6",
+          blue: '#1d4ed8'
         },
         buttons: {
           submit: "#3b82f6",

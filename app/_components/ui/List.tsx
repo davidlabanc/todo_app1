@@ -1,14 +1,30 @@
 "use client";
-import React from "react";
-import { Lists } from "../../_interfaces/global";
+import React, { useState, useEffect } from "react";
+import _ from "lodash";
+import { Lists, Todo } from "../../_interfaces/global";
+import { LoadingIconAttr } from "../../_constants/css_constants";
 import TodoItem from "./TodoItem";
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import NewTodoForm from "./NewTodoForm";
+import LoadingIcon from '../icons/LoadingIcon'
 
 export default function List({ lists }: Lists) {
+  const [todoPlaceholder, setTodoPlaceholder] = useState<{
+    listId: string;
+    text: string;
+  } | null>(null);
+
+  useEffect(() => {
+    setTodoPlaceholder(null);
+  }, [lists]);
+
+  const addNewTodo = (listId: string, newTodo: string) => {
+    setTodoPlaceholder({ listId: listId, text: newTodo });
+  };
+
   return (
     <div className="bg-light-bg border-light-border dark:bg-dark-bg dark:border-dark-border border mb-20 w-1/3 p-5 justify-center rounded-lg min-w-80 min-h-80">
       <div className="flex justify-between pb-5 items-center">
@@ -31,7 +47,7 @@ export default function List({ lists }: Lists) {
               <p className="dark:text-dark-font">{list.name}</p>
             </AccordionSummary>
             <AccordionDetails className="pt-0 dark:bg-dark-bg dark:text-dark-font">
-              <NewTodoForm listId={list.id} />
+              <NewTodoForm listId={list.id} addNewTodo={addNewTodo} />
               {Array.isArray(list.todo) ? (
                 list.todo.map((todo, index) => (
                   <TodoItem
@@ -46,6 +62,20 @@ export default function List({ lists }: Lists) {
               ) : (
                 <p>List is empty</p>
               )}
+              <div>
+                {todoPlaceholder && todoPlaceholder.listId === list.id && (
+                  <div className="box">
+                    <div className="pr-3">{list.todo.length + 1}.</div>
+                    <div className={`p-2 text-left w-full`}>
+                      {todoPlaceholder.text}
+                    </div>
+                    <LoadingIcon
+                      fill="none"
+                      className={LoadingIconAttr.className}
+                    />
+                  </div>
+                )}
+              </div>
             </AccordionDetails>
           </Accordion>
         );

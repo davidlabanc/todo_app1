@@ -59,8 +59,6 @@ export async function deleteTodo(prevState: any, formData: FormData) {
   const todoId = formData.get("id");
   const listId = formData.get("listId");
 
-  console.log(todoId, listId)
-
   try {
     const res = await fetch(
       `${process.env.BASE_URL}/lists/${listId}/todos/${todoId}`,

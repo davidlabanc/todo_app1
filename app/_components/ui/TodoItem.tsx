@@ -104,7 +104,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({
               <div
                 className={`${
                   completed ? "pr-3" : "pr-[11px]"
-                } group-hover:pr-3`}
+                } pl-1 group-hover:pr-3`}
               >
                 {index}.
               </div>
@@ -126,7 +126,10 @@ const TodoItem: React.FC<ITodoItemProps> = ({
             </div>
             <div className="flex flex-grow justify-end group">
               {completeLoading ? (
-                <LoadingIcon fill="none" className={`mx-1 ${LoadingIconAttr.className}`} />
+                <LoadingIcon
+                  fill="none"
+                  className={`mx-3 ${LoadingIconAttr.className}`}
+                />
               ) : (
                 <div className="opacity-0 transition-all duration-300 group-hover:opacity-100">
                   <DeleteButton onClick={toggleOverlay} />
@@ -150,7 +153,7 @@ const TodoItem: React.FC<ITodoItemProps> = ({
         ) : (
           <div key={id} className="flex items-center mb-2 w-full">
             <div className="flex items-center">
-              <div className="pr-3">{index}.</div>
+              <div className="pr-3 pl-1">{index}.</div>
             </div>
             <div className="flex items-cener"></div>
             <form

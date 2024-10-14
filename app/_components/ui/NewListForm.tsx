@@ -15,8 +15,6 @@ export default function NewListForm({ }: Props) {
   const [overlay, setOverlay] = useState(false)
   const [state, formAction] = useFormState(createNewList, { success: false })
 
-  console.log(state)
-
   useEffect(() => {
     if (state.success) {
       toggleOverlay()
